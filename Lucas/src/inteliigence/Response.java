@@ -4,6 +4,9 @@ import window.Lucas;
 
 public class Response {
 	public static String input;
+	
+	public static String playername = "";
+	public static boolean toldname = false;
 	public static boolean aboutmax = false;
 	public static boolean askedquestion = false;
 	public static boolean brothershown = false;
@@ -20,6 +23,7 @@ public class Response {
 		input = input.replace("it's", "it is");
 		input = input.replace("you're", "you are");
 		input = input.replace("thank you", "thanks");
+		input = input.replace("what's", "what is");
 		
 		input = input.replace("'", "");
 		input = input.replace(".", "");
@@ -136,7 +140,32 @@ public class Response {
 			reply = "Nothing, really.";
 			askedquestion = true;
 			understood = true;
-		} 
+		} else if (keyWord("i am") || keyWord("my name is")) {
+			if (keyWord("Luke")) {
+				playername = "Luke";
+			} else if (keyWord("Max")) {
+				playername = "Max";
+			} else if (keyWord("John")) {
+				playername = "John";
+			} else if (keyWord("Will")) {
+				playername = "Will";
+			}
+			if (toldname) {
+				reply = "You already told me your name!";
+			} else {
+				reply = playername + ", hey? I like that name.";
+			}
+			toldname = true;
+			understood = true;
+		} else if (keyWord("what is") && keyWord("my name")) {
+			if (toldname) {
+				reply = "Your name is " + playername;
+			} else {
+				reply = "You haven't told me!";
+			}
+			askedquestion = true;
+			understood = true;
+		}
 		
 		if (understood) {
 			return reply;
