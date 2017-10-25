@@ -1,9 +1,5 @@
 package inteliigence;
 
-/* No copies allowed onless you're Max.
- * "What if we're not Max?" you ask?
- * Then you wouldn't have the source code and be reading this!*/
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
